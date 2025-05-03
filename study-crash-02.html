@@ -19,14 +19,14 @@
 
 
 <div id="youWin" class="youWin" style="display: none;">
+<p>
+<div class="raspberry-banner">Semestre terminado!</div>
 <br>
-<font style="font-size: 3em; font-weight: bold; font-family: 'SketchRockwell';">Semestre terminado!</font><br>
-<font style="font-size: 1.6em; ">Ahora que te divertiste jugando, puedes dedicar un tiempo a estudiar...<br>
-establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!
+<font style="font-size: 1.8em;">Ahora que te divertiste jugando, puedes dedicar un tiempo a estudiar...
+establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 <br>
-<br>
-<div class="studyStart" onclick="location.href='study-crash-01.html'">REINICIAR</div>
-<br>
+<div class="studyStart" onclick="location.href='study-crash-01.html'">RESTART</div>
+</font></p>
 </div>
 
 
@@ -50,6 +50,7 @@ const config = {
   },
   scene: { preload, create, update }
 };
+
 
 let player, cursors, items;
 let score = 0;
@@ -195,6 +196,7 @@ function collectItem(player, item) {
   item.destroy();
   scoreText.setText('Estudio: ' + score);
   checkGameOver();
+
 }
 
 function checkGameOver() {

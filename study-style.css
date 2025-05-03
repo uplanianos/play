@@ -78,41 +78,72 @@ canvas { display: block; margin: auto; }
 
 body::-webkit-scrollbar { display: none; }
 
-p	{color: white;}
-h1	{color: white;}
-a		{ color: cornflowerblue; text-decoration: none; cursor: pointer; }
-a:hover		{ color: cornflowerblue; text-decoration: none; cursor: pointer; text-shadow: 1px 1px 12px red; }
-a:active	{ color: red; text-decoration: none; cursor: pointer; text-shadow: 1px 1px 12px corflowerblue; }
-a:visited	{ color: cornflowerblue; text-shadow: 1px 1px 12px pink; }
+p	{color: white; font-size: 1.4em; text-shadow: 1px 1px 1px black;}
+h1	{color: white; text-shadow: 1px 1px 1px black;}
+a		{ text-decoration: none; color: cornflowerblue; cursor: pointer; text-shadow: 1px 1px 1px navy; }
+a:hover		{ text-decoration: none; color: cornflowerblue; cursor: pointer; text-shadow: 1px 1px 12px navy; }
+a:active	{ text-decoration: none; color: red; cursor: pointer; text-shadow: 1px 1px 12px corflowerblue; }
+a:visited	{ color: cornflowerblue; text-shadow: 1px 1px 12px purple; }
 
 div.start {
  position: absolute;
- top: 16%;
- left: 16%;
- width: 64%;
+ left: 1%; right: 1%;
+ top:50%;
+ transform:translateY(-50%);
+ width: 85%;
  background-color: #151B54CC;
- text-align: center; float: center;
- font-size: 18px; color: white;
- border: 4px solid white;
- border-radius: 24px;
+ text-align: center;
+ font-size: 1.6em;
+ color: white;
+ border: 6px solid white;
+ border-radius: 36px;	
+ margin-left: auto;
+ margin-right: auto;
+ padding: 32px;
+}
+
+div.orange-banner {
+ position: relative;
+ width: max-content;
+ background-color: orange;
+ font-size: 1.6em;
+ border: 3px solid yellow;
+ border-radius: 12px;
  margin: auto;
+ padding-left: 36px;
+ padding-right: 36px;
+}
+
+div.raspberry-banner {
+ background-color: #E30B5C /* Raspberry */;
+ color: yellow;
+ font-size: 2.8em;
+ font-weight: bold;
+ font-family: 'SketchRockwell';
+ text-shadow: 1px 1px 6px navy;
+ border: 3px solid yellow;
+ border-radius: 24px;
  padding: 24px;
 }
 
 div.youWin {
  z-index: 1;
  position: absolute;
- left: 16%; top: 32%;
- width: 64%;
+ left: 1%; right: 1%;
+ top:50%;
+ transform:translateY(-50%);
+ width: 85%;
  background-color: #151B54CC;
- text-align: center; float: center; color: white;
+ text-align: center; color: white;
  margin: auto;
- border: 4px solid white;
- border-radius: 24px;
+ border: 6px solid white;
+ border-radius: 32px;
  padding: 24px; 
 }
 
 
-div.studyStart { width: 50%; background-color: green; font-size: 1.2em; text-align: center; margin: auto; padding: 6px; padding-left: 8px; padding-right: 12px; margin-top: 12px; border: 3px solid white; border-radius: 6px; cursor: pointer; }
-div.studyStart:hover {color: yellow; background-color: #FF0000AA; outline: none;}
+/* START BUTTON */
+div.studyStart { width: 50%; background-color: #008000AA /* Green */; font-size: 1.4em; text-align: center; margin: auto; margin-top: 12px; padding: 18px; border: 3px solid white; border-radius: 12px; cursor: pointer; }
+
+div.studyStart:hover { color: yellow; background-color: #FF000066 /* Red: #FF0000 - Dark Red: #8B0000 */; outline: none; }
 
