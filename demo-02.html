@@ -27,6 +27,7 @@ establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 <br>
 <div class="studyStart" onclick="location.href='demo-01.html'">RESTART</div>
 </font></p>
+<div style="position: absolute; left: -50px; bottom: -50px;"><img src="sprites/student-character.png" height="275em"></div>
 </div>
 
 
@@ -51,27 +52,28 @@ const config = {
   scene: { preload, create, update }
 };
 
+const game = new Phaser.Game(config);
 
 let player, cursors, items;
 let score = 0;
 let scoreText;
+let moveSpeed = 300;
+const MIN_SPEED = 100;
+const MAX_SPEED = 600;
 let moveLeft = false;
 let moveRight = false;
-let moveSpeed = 300;
-const MAX_SPEED = 600;
-const MIN_SPEED = 100;
-
 let powerBarBg, powerBarFill, speedLabel;
 
-const game = new Phaser.Game(config);
 
 function preload() {
 
-  this.load.spritesheet('dude', 'https://uplanianos.github.io/play/sprites/dude.png', {
-    frameWidth: 32, frameHeight: 48
+  this.load.spritesheet('student', 'https://uplanianos.github.io/play/sprites/walker.png', {
+    frameWidth: 160, frameHeight: 213
   });
 
   this.load.image('background','https://uplanianos.github.io/play/sprites/background.jpg');
+  // this.load.image('ground', 'https://uplanianos.github.io/play/sprites/ground.png');
+
   this.load.image('apple','https://uplanianos.github.io/play/sprites/apple.png');
   this.load.image('chicken','https://uplanianos.github.io/play/sprites/chicken.png');
   this.load.image('books','https://uplanianos.github.io/play/sprites/books.png');
@@ -81,28 +83,33 @@ function preload() {
   this.load.image('weed','https://uplanianos.github.io/play/sprites/weed.png');
 }
 
+
 function create() {
   const bg = this.add.image(0, 0, 'background').setOrigin(0, 0);
-
   bg.setDisplaySize(config.width, config.height); // Stretch to full screen
   bg.setDepth(-1); // Send background behind everything
 
   // Player setup
-  player = this.physics.add.sprite(config.width / 2, config.height - 100, 'dude');
+  player = this.physics.add.sprite(config.width / 2, (config.height * 1.6), 'student');
+  player.setBounce(0.2);
   player.setCollideWorldBounds(true);
-
-  // 🔽 Add this block to scale the character adaptively
-  const targetWidthPercent = 0.12; // You can set this between 0.05 and 0.12
+  const targetWidthPercent = 0.15; // This is the character scaling
   const scale = (config.width * targetWidthPercent) / player.width;
   player.setScale(scale);
 
-  // Animations
-  this.anims.create({ key: 'left', frames: this.anims.generateFrameNumbers('dude', { start: 0, end: 3 }), frameRate: 10, repeat: -1 });
-  this.anims.create({ key: 'turn', frames: [ { key: 'dude', frame: 4 } ], frameRate: 20 });
-  this.anims.create({ key: 'right', frames: this.anims.generateFrameNumbers('dude', { start: 5, end: 8 }), frameRate: 10, repeat: -1 });
+  // NEW ANIMATIONS
+  this.anims.create({ key: 'turn', frames: [ { key: 'student', frame: 0 } ], frameRate: 20 });
+  this.anims.create({ key: 'left', frames: this.anims.generateFrameNumbers('student', { start: 1, end: 6 }), frameRate: 8, repeat: -1 });
+  this.anims.create({ key: 'right', frames: this.anims.generateFrameNumbers('student', { start: 1, end: 6 }), frameRate: 8, repeat: -1 });
 
-  cursors = this.input.keyboard.createCursorKeys();
+  // Enable keyboard input
+  this.cursors = this.input.keyboard.createCursorKeys();
+
+  // Collisions
+  // this.physics.add.collider(this.player, platforms);
+
   items = this.physics.add.group();
+  this.physics.add.overlap(player, items, collectItem, null, this);
 
   scoreText = this.add.text(16, 16, 'Estudio: 0', {
     fontSize: '5em',
@@ -114,13 +121,20 @@ function create() {
   powerBarBg = this.add.rectangle(12 , 120, 200, 20, 0x888888).setOrigin(0, 0);
   powerBarFill = this.add.rectangle(12 , 120, 200, 20, 0x00ff00).setOrigin(0, 0);
 
+  // Touch control handlers
+  document.getElementById('leftBtn').addEventListener('touchstart', () => moveLeft = true);
+  document.getElementById('leftBtn').addEventListener('touchend', () => moveLeft = false);
+  document.getElementById('rightBtn').addEventListener('touchstart', () => moveRight = true);
+  document.getElementById('rightBtn').addEventListener('touchend', () => moveRight = false);
 
+  cursors = this.input.keyboard.createCursorKeys();
   this.time.addEvent({
-    delay: 1000,
+    delay: 1000, // Delay for the items!
     callback: dropItem,
     callbackScope: this,
     loop: true
   });
+
 
   // Pause Button
   let isPaused = false;
@@ -139,24 +153,16 @@ function create() {
   });
 
 
-  this.physics.add.overlap(player, items, collectItem, null, this);
-
-  // Touch control handlers
-  document.getElementById('leftBtn').addEventListener('touchstart', () => moveLeft = true);
-  document.getElementById('leftBtn').addEventListener('touchend', () => moveLeft = false);
-  document.getElementById('rightBtn').addEventListener('touchstart', () => moveRight = true);
-  document.getElementById('rightBtn').addEventListener('touchend', () => moveRight = false);
-
-
 }
 
 function update() {
+
   if (cursors.left.isDown || moveLeft) {
     player.setVelocityX(-moveSpeed);
-    player.anims.play('left', true);
+    player.anims.play('left', true).setFlipX(true);;
   } else if (cursors.right.isDown || moveRight) {
     player.setVelocityX(moveSpeed);
-    player.anims.play('right', true);
+    player.anims.play('right', true).setFlipX(false);;
   } else {
     player.setVelocityX(0);
     player.anims.play('turn');
@@ -183,7 +189,6 @@ function dropItem() {
 
 function collectItem(player, item) {
   const type = item.getData('type');
-
 
   if (type === 'apple') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 10), score += 10, applePlay();
   else if (type === 'chicken') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 20), eatPlay();
