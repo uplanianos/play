@@ -27,8 +27,13 @@ establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 <br>
 <div class="studyStart" onclick="location.href='demo-01.html'">RESTART</div>
 </font></p>
+<br>
 <div style="position: absolute; left: -50px; bottom: -50px;"><img src="sprites/student-character.png" height="275em"></div>
 </div>
+
+<!-- Manual Controls -->
+<button id="soundtrackBtn" class="soundtrack-btn" onclick="soundtrackButton()">🎶</button>
+<button id="pauseBtn" class="pause-btn">⏸</button>
 
 
 <!-- Touch Controls -->
@@ -36,8 +41,6 @@ establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
   <button id="leftBtn" class="btn">⬅️</button>
   <button id="rightBtn" class="btn">➡️</button>
 </div>
-
-<button id="pauseBtn" class="pause-btn">⏸ Pausa</button>
 
 <script type="text/javascript">
 const config = {
@@ -111,15 +114,12 @@ function create() {
   items = this.physics.add.group();
   this.physics.add.overlap(player, items, collectItem, null, this);
 
-  scoreText = this.add.text(16, 16, 'Estudio: 0', {
-    fontSize: '5em',
-    fill: '#000'
-  });
+  scoreText = this.add.text(12, 0, 'Estudio: 0', { fontSize: '6em', fontFamily: 'Verdana', fill: 'darkred' });
 
   // Power bar + label
-  speedLabel = this.add.text(12 , 80, 'Hábitos', {fontSize: '4em', fill: '#000'});
-  powerBarBg = this.add.rectangle(12 , 120, 200, 20, 0x888888).setOrigin(0, 0);
-  powerBarFill = this.add.rectangle(12 , 120, 200, 20, 0x00ff00).setOrigin(0, 0);
+  powerBarBg = this.add.rectangle(20, 80, 200, 50, 0x888888).setOrigin(0, 0);
+  powerBarFill = this.add.rectangle(20, 80, 200, 50, 0x00ff00).setOrigin(0, 0);
+  speedLabel = this.add.text(30, 82, 'Hábitos', {fontSize: '4em', fontFamily: 'Verdana', fill: 'navy'});
 
   // Touch control handlers
   document.getElementById('leftBtn').addEventListener('touchstart', () => moveLeft = true);
@@ -143,11 +143,13 @@ function create() {
     if (!isPaused) {
       this.scene.pause();
       soundtrackStop();
-      pauseBtn.textContent = '▶ Seguir';
+      pauseBtn.textContent = '▶';
+      pauseBtn.style.backgroundColor = "#E30B5CCC";
     } else {
       this.scene.resume();
       soundtrackResume();
-      pauseBtn.textContent = '⏸ Pausa';
+      pauseBtn.textContent = '⏸';
+      pauseBtn.style.backgroundColor = "#666666CC";
     }
     isPaused = !isPaused;
   });
@@ -225,24 +227,44 @@ const rightBtn = document.getElementById("rightBtn")
 document.addEventListener('keydown', (event) => {
  if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
   document.getElementById("soundtrack").muted = false;
-  soundtrack.play();
+  soundtrackResume()
   }
  });
 
-leftBtn.addEventListener("click", function(event) { soundtrack.play() })
-rightBtn.addEventListener("click", function(event) { soundtrack.play() })
+leftBtn.addEventListener("click", function(event) { soundtrackResume() })
+rightBtn.addEventListener("click", function(event) { soundtrackResume() })
 
 } // END OF SOUNDTRACK FUNCTION!
 
 function soundtrackStop() {
- document.getElementById("soundtrack").muted = false;
+ document.getElementById("soundtrack").muted = true;
  soundtrack.pause();
 }
 
 function soundtrackResume() {
+soundtrack = document.getElementById("soundtrack")
+stButton = document.getElementById("soundtrackBtn");
+if (stButton.innerHTML == "🎶") {
  document.getElementById("soundtrack").muted = false;
  soundtrack.play();
+ }
+ else { document.getElementById("soundtrack").muted = true; soundtrack.pause(); }
 }
+
+function soundtrackButton() {
+stButton = document.getElementById("soundtrackBtn");
+if (stButton.innerHTML === "🎶") {
+ stButton.innerHTML = "🎵"
+ stButton.style.backgroundColor = "#666666CC"
+ soundtrack.pause();
+ }
+else {
+ stButton.innerHTML = "🎶"
+ stButton.style.backgroundColor = "#E30B5CCC"
+ soundtrack.play();
+ }
+}
+
 
 function applePlay() {
  document.getElementById("apple").muted = false;
@@ -268,6 +290,7 @@ function youwinPlay() {
  document.getElementById("youwin").muted = false;
  youwin.play();
 }
+
 
 // END OF FULL SCRIPT!!
 </script>
