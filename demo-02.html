@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Study or Crash! - Uplanianos</title>
+  <title>Study or Crash (Demo)! - Uplanianos</title>
   <link rel="icon" href="media/uplanianos-icon.png">
   <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
   <link rel="stylesheet" href="study-style.css"></style>
@@ -15,7 +15,10 @@
 <audio id="eat" class="audios" src="media/eat.mp3" preload="auto" style="display:none">No audio!</audio>
 <audio id="success" class="audios" src="media/success.mp3" preload="auto" style="display:none">No audio!</audio>
 <audio id="lose" class="audios" src="media/lose.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="gamer" class="audios" src="media/gamer.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="whine" class="audios" src="media/whine.mp3" preload="auto" style="display:none">No audio!</audio>
 <audio id="youwin" class="audios" src="media/you-win.mp3" preload="auto" style="display:none">No audio!</audio>
+
 
 
 <div id="youWin" class="youWin" style="display: none;">
@@ -25,15 +28,33 @@
 <font style="font-size: 1.8em;">Ahora que te divertiste jugando, puedes dedicar un tiempo a estudiar...
 establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 <br>
-<div class="studyStart" onclick="location.href='demo-01.html'">RESTART</div>
+<div class="actionButtonsDiv">
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/agenda.html')" style="border-radius: 24px 0px 0px 0px;">AGENDA</div>
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/horario.html')" style="border-radius: 0px 24px 0px 0px;">HORARIO</div>
+</div>
+<div class="actionButtonsDiv">
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/estudio.html')" style="border-radius: 0px;">REPASAR</div>
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/timebox.html')" style="border-radius: 0px;">PLANEAR</div>
+</div>
+<div class="actionButtonsDiv">
+<div class="actionButtons" onclick="location.replace('demo-01.html')" style="width: 456px; border-radius: 0px 0px 24px 24px;">REINICIAR ►</div>
+</div>
 </font></p>
 <br>
 <div style="position: absolute; left: -50px; bottom: -50px;"><img src="sprites/student-character.png" height="275em"></div>
 </div>
 
+
+
+<div id="soundtrackLink" class="soundtrackLink">
+<b>► Sountrack:</b> <a href="https://www.youtube.com/watch?v=8rOQ5mQ7xyo" target="_blank"> Classical Music but...</a>
+</div>
+
+
 <!-- Manual Controls -->
 <button id="soundtrackBtn" class="soundtrack-btn" onclick="soundtrackButton()">🎶</button>
 <button id="pauseBtn" class="pause-btn">⏸</button>
+<img id="spacebar" class="spacebar" src="sprites/spacebar.png">
 
 
 <!-- Touch Controls -->
@@ -75,14 +96,18 @@ function preload() {
   });
 
   this.load.image('background','https://uplanianos.github.io/play/sprites/background.jpg');
-  // this.load.image('ground', 'https://uplanianos.github.io/play/sprites/ground.png');
+  this.load.image('ground', 'https://uplanianos.github.io/play/sprites/ground.png');
 
-  this.load.image('apple','https://uplanianos.github.io/play/sprites/apple.png');
-  this.load.image('chicken','https://uplanianos.github.io/play/sprites/chicken.png');
   this.load.image('books','https://uplanianos.github.io/play/sprites/books.png');
   this.load.image('study','https://uplanianos.github.io/play/sprites/study.png');
-  this.load.image('beer','https://uplanianos.github.io/play/sprites/beer.png');
+  this.load.image('apple','https://uplanianos.github.io/play/sprites/apple.png');
+  this.load.image('eggs','https://uplanianos.github.io/play/sprites/eggs.png');
+  this.load.image('avocado','https://uplanianos.github.io/play/sprites/avocado.png');
+  this.load.image('chicken','https://uplanianos.github.io/play/sprites/chicken.png');
   this.load.image('chocolate','https://uplanianos.github.io/play/sprites/chocolate.png');
+  this.load.image('beer','https://uplanianos.github.io/play/sprites/beer.png');
+  this.load.image('phone','https://uplanianos.github.io/play/sprites/phone.png');
+  this.load.image('games','https://uplanianos.github.io/play/sprites/games.png');
   this.load.image('weed','https://uplanianos.github.io/play/sprites/weed.png');
 }
 
@@ -92,11 +117,18 @@ function create() {
   bg.setDisplaySize(config.width, config.height); // Stretch to full screen
   bg.setDepth(-1); // Send background behind everything
 
+  // Add ground near the bottom, but raised a bit (e.g., 100px from bottom)
+  const groundY = config.height - 40; // adjust height here
+  const ground = this.physics.add.staticImage(config.width / 2, groundY, 'ground');
+  ground.setDisplaySize(config.width, 80); // stretch or scale if needed
+  ground.refreshBody();
+
   // Player setup
-  player = this.physics.add.sprite(config.width / 2, (config.height * 1.6), 'student');
-  player.setBounce(0.2);
+  player = this.physics.add.sprite(config.width / 2, groundY - 200, 'student');
+  player.setBounce(0.3);
   player.setCollideWorldBounds(true);
-  const targetWidthPercent = 0.15; // This is the character scaling
+  var targetWidthPercent = 0.10; // This is the character scaling
+  if (window.innerWidth <= 1000) { targetWidthPercent = 0.20 };
   const scale = (config.width * targetWidthPercent) / player.width;
   player.setScale(scale);
 
@@ -108,18 +140,19 @@ function create() {
   // Enable keyboard input
   this.cursors = this.input.keyboard.createCursorKeys();
 
-  // Collisions
-  // this.physics.add.collider(this.player, platforms);
-
   items = this.physics.add.group();
   this.physics.add.overlap(player, items, collectItem, null, this);
 
-  scoreText = this.add.text(12, 0, 'Estudio: 0', { fontSize: '6em', fontFamily: 'Verdana', fill: 'darkred' });
+  // Collisions Ground
+  this.physics.add.collider(player, ground);
+  // this.physics.add.collider(items, ground);
+
+  scoreText = this.add.text(12, 0, 'Estudio: 0', { fontSize: '6em', fontFamily: 'Verdana', fill: 'navy' });
 
   // Power bar + label
   powerBarBg = this.add.rectangle(20, 80, 200, 50, 0x888888).setOrigin(0, 0);
   powerBarFill = this.add.rectangle(20, 80, 200, 50, 0x00ff00).setOrigin(0, 0);
-  speedLabel = this.add.text(30, 82, 'Hábitos', {fontSize: '4em', fontFamily: 'Verdana', fill: 'navy'});
+  speedLabel = this.add.text(40, 82, 'Hábitos', {fontSize: '4em', fontFamily: 'Verdana', fill: 'darkred'});
 
   // Touch control handlers
   document.getElementById('leftBtn').addEventListener('touchstart', () => moveLeft = true);
@@ -129,7 +162,7 @@ function create() {
 
   cursors = this.input.keyboard.createCursorKeys();
   this.time.addEvent({
-    delay: 1000, // Delay for the items!
+    delay: 1000, // DROP RATE FOR THE ITEMS (DEFAULT: 1000)!
     callback: dropItem,
     callbackScope: this,
     loop: true
@@ -137,7 +170,7 @@ function create() {
 
 
   // Pause Button
-  let isPaused = false;
+   let isPaused = false;
    const pauseBtn = document.getElementById('pauseBtn');
    pauseBtn.addEventListener('click', () => {
     if (!isPaused) {
@@ -154,11 +187,29 @@ function create() {
     isPaused = !isPaused;
   });
 
+  // Space Bar Pause
+  document.addEventListener('keyup', event => {
+  if (event.code === 'Space') {
+    if (!isPaused) {
+      this.scene.pause();
+      soundtrackStop();
+      pauseBtn.textContent = '▶';
+      pauseBtn.style.backgroundColor = "#E30B5CCC";
+    } else {
+      this.scene.resume();
+      soundtrackResume();
+      pauseBtn.textContent = '⏸';
+      pauseBtn.style.backgroundColor = "#666666CC";
+    }
+    isPaused = !isPaused;
+    }
+  })
 
+// END OF CREAT FUNCTION!
 }
 
-function update() {
 
+function update() {
   if (cursors.left.isDown || moveLeft) {
     player.setVelocityX(-moveSpeed);
     player.anims.play('left', true).setFlipX(true);;
@@ -175,14 +226,15 @@ function update() {
   powerBarFill.width = Phaser.Math.Clamp(barWidth, 0, 200);
 }
 
+
 function dropItem() {
   const x = Phaser.Math.Between(50, config.width - 50);
-  const types = ['apple', 'chicken', 'books', 'study', 'beer', 'chocolate', 'weed'];
+  const types = ['books', 'study', 'apple', 'eggs', 'avocado', 'chicken', 'chocolate', 'beer', 'phone', 'games', 'weed'];
   const type = Phaser.Utils.Array.GetRandom(types);
 
   const item = items.create(x, 10, type);
   item.setData('type', type);
-  item.setVelocityY(200);
+  item.setVelocityY(220); // FALLING ITEMS VELOCITY! (DEFAULT: 200)
 
   // Scale item to 5% of screen width
   const scaleFactor = (config.width * 0.09) / item.width; // 0.09 = 9%
@@ -192,18 +244,21 @@ function dropItem() {
 function collectItem(player, item) {
   const type = item.getData('type');
 
-  if (type === 'apple') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 10), score += 10, applePlay();
+  if (type === 'books') score += 60, successPlay();
+  else if (type === 'study') score += 60, successPlay();
+  else if (type === 'apple') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 10), score += 10, applePlay();
+  else if (type === 'eggs') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 20), score += 20, applePlay();
+  else if (type === 'avocado') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 20), score += 20, applePlay();
   else if (type === 'chicken') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 20), eatPlay();
-  else if (type === 'chocolate') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 20), eatPlay();
-  else if (type === 'books') score += 30, successPlay();
-  else if (type === 'study') score += 30, successPlay();
-  else if (type === 'beer') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 30), score -= 30, losePlay();
-  else if (type === 'weed') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 60), score -= 60, losePlay();
+  else if (type === 'chocolate') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 10), eatPlay();
+  else if (type === 'beer') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 60), score -= 60, losePlay(), speedLabel.style.color = 'navy';
+  else if (type === 'phone') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 30), score -= 30, whinePlay();
+  else if (type === 'games') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 30), score -= 30, gamerPlay();
+  else if (type === 'weed') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 100), score -= 150, losePlay();
 
   item.destroy();
   scoreText.setText('Estudio: ' + score);
   checkGameOver();
-
 }
 
 function checkGameOver() {
@@ -212,9 +267,11 @@ function checkGameOver() {
     game.destroy(true, false) // Kills the game
     youwinPlay();
     document.getElementById("youWin").style.display = "block"; // Showing end message!
+    document.getElementById("soundtrackLink").style.display = "block"; // Showing end message!
     document.getElementById("leftBtn").style.display = "none"; // Hiding UI elements!
     document.getElementById("rightBtn").style.display = "none"; // Hiding UI elements!
     document.getElementById("pauseBtn").style.display = "none"; // Hiding UI elements!
+    document.getElementById("soundtrackBtn").style.display = "none"; // Hiding UI elements!
     setTimeout(function() { location.replace("https://uplanianos.github.io/app/") }, 1000 * 30) // Timed redirect (30 seconds)!
   }
 }
@@ -281,6 +338,16 @@ function successPlay() {
  success.play();
 }
 
+function gamerPlay() {
+ document.getElementById("gamer").muted = false;
+ gamer.play();
+}
+
+function whinePlay() {
+ document.getElementById("whine").muted = false;
+ whine.play();
+}
+
 function losePlay() {
  document.getElementById("lose").muted = false;
  lose.play();
@@ -302,15 +369,18 @@ function checkMobile() {
 // DECLARING ELEMENTS
 leftBtn = document.getElementById('leftBtn')
 leftBtn = document.getElementById('leftBtn')
+spacebar = document.getElementById('spacebar')
 
 // CHECKING MOBILE ENVIRONMENT!
  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
   leftBtn.style.display = "block"
   rightBtn.style.display = "block"
+  spacebar.style.display = "none"
  }
  else {
   leftBtn.style.display = "none"
   rightBtn.style.display = "none"
+  spacebar.style.display = "block"
  }
 }
 </script>

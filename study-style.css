@@ -93,6 +93,14 @@ canvas { display: block; margin: auto; }
  outline: none;
 }
 
+.spacebar {
+ position: absolute;
+ top: 198px;
+ right: 26px;
+ width: 112px;
+ z-index: 10;
+}
+
 #leftBtn { left: 25px; bottom: 75px;  box-shadow: none; outline: none; }
 #rightBtn { right: 25px; bottom: 75px;  box-shadow: none; outline: none; }
 

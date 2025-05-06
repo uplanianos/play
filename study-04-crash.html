@@ -50,6 +50,7 @@ establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 <!-- Manual Controls -->
 <button id="soundtrackBtn" class="soundtrack-btn" onclick="soundtrackButton()">🎶</button>
 <button id="pauseBtn" class="pause-btn">⏸</button>
+<img id="spacebar" class="spacebar" src="sprites/spacebar.png">
 
 
 <!-- Touch Controls -->
@@ -140,12 +141,12 @@ function create() {
   //this.physics.add.collider(items, ground);
 
 
-  scoreText = this.add.text(12, 0, 'Estudio: 0', { fontSize: '6em', fontFamily: 'Verdana', fill: 'darkred' });
+  scoreText = this.add.text(12, 0, 'Estudio: 0', { fontSize: '6em', fontFamily: 'Verdana', fill: 'navy' });
 
   // Power bar + label
   powerBarBg = this.add.rectangle(20, 80, 200, 50, 0x888888).setOrigin(0, 0);
   powerBarFill = this.add.rectangle(20, 80, 200, 50, 0x00ff00).setOrigin(0, 0);
-  speedLabel = this.add.text(30, 82, 'Hábitos', {fontSize: '4em', fontFamily: 'Verdana', fill: 'navy'});
+  speedLabel = this.add.text(40, 82, 'Hábitos', {fontSize: '4em', fontFamily: 'Verdana', fill: 'darkred'});
 
   // Touch control handlers
   document.getElementById('leftBtn').addEventListener('touchstart', () => moveLeft = true);
@@ -155,7 +156,7 @@ function create() {
 
   cursors = this.input.keyboard.createCursorKeys();
   this.time.addEvent({
-    delay: 1000, // Delay for the items!
+    delay: 1000, // DROP RATE FOR THE ITEMS (DEFAULT: 1000)!
     callback: dropItem,
     callbackScope: this,
     loop: true
@@ -178,6 +179,26 @@ function create() {
     }
     isPaused = !isPaused;
   });
+
+  // Space Bar Pause
+  document.addEventListener('keyup', event => {
+  if (event.code === 'Space') {
+    if (!isPaused) {
+      this.scene.pause();
+      soundtrackStop();
+      pauseBtn.textContent = '▶';
+      pauseBtn.style.backgroundColor = "#E30B5CCC";
+    } else {
+      this.scene.resume();
+      soundtrackResume();
+      pauseBtn.textContent = '⏸';
+      pauseBtn.style.backgroundColor = "#666666CC";
+    }
+    isPaused = !isPaused;
+    }
+  })
+
+// END OF CREAT FUNCTION!
 }
 
 
@@ -208,7 +229,7 @@ function dropItem() {
   item.setVelocityY(200);
 
   // Scale item to 5%-15% of screen width
-  var itemSize = 0.09; console.log(itemSize) // DEFAULT ITEM SIZE: 0.09 (9%).
+  var itemSize = 0.09; // DEFAULT ITEM SIZE: 0.09 (9%).
   const scaleFactor = (config.width * itemSize) / item.width;
   item.setScale(scaleFactor);
 }
@@ -328,15 +349,18 @@ function checkMobile() {
 // DECLARING ELEMENTS
 leftBtn = document.getElementById('leftBtn')
 leftBtn = document.getElementById('leftBtn')
+spacebar = document.getElementById('spacebar')
 
 // CHECKING MOBILE ENVIRONMENT!
  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
   leftBtn.style.display = "block"
   rightBtn.style.display = "block"
+  spacebar.style.display = "none"
  }
  else {
   leftBtn.style.display = "none"
   rightBtn.style.display = "none"
+  spacebar.style.display = "block"
  }
 }
 </script>
