@@ -157,6 +157,23 @@ div.raspberry-banner {
  padding: 24px;
 }
 
+div.demoCircle {
+ position: absolute;
+ top: 50px; left: 60px;
+ width: 125px;
+ display: grid;
+ place-content: center;
+ font-family: Tahoma;
+ font-weight: bold;
+ color: #FFFFFF;
+ border: 4px solid cornflowerblue;
+ box-shadow: 3px 3px 6px navy;
+ aspect-ratio: 1;
+ border-radius: 50%;
+ background: linear-gradient(45deg, #FFF, red); /* the gradient coloration */
+ transform: rotate(-25deg);
+}
+
 div.youWin {
  z-index: 1;
  position: absolute;
