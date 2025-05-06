@@ -1,302 +1,44 @@
 <!DOCTYPE html>
-<html lang="en-US">
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- The following are Search Engine Meta Data -->
-    <meta charset="utf-8">
-    <meta name="description" content="Uplanianos Web: La app Uplanianos permite llevar registro de tus actividades académicas como el horario, avance curricular, calendario académico, fechas de pruebas o reglamento del estudiante, además de usar herramientas para calcular tus notas de pruebas, promedios, asistencia y examen acumulativo especial."/>
-    <meta name="keywords" content="Uplanianos, Upla, Reglamento, Justificación, Paro, Votación, Universidad, Playa, Ancha, Universidad de Playa Ancha, Valparaíso, Chile"/>
-    <meta name="author" content="Prof. Juan Edo. Méndez - juan.mendez@upla.cl" />
-    <meta name="robots" content="index, follow">
-    <!-- End of Search Engine Meta Tags -->
-    <link rel="icon" href="media/uplanianos-icon.png">
-    <link rel="stylesheet" href="files/uplanianos-style.css">
-    <title>Uplanianos Web</title>
+  <meta charset="utf-8">
+  <title>Study or Crash (Demo)! - Uplanianos</title>
+  <link rel="icon" href="media/uplanianos-icon.png">
+  <link rel="stylesheet" href="study-style.css">
+  </style>
 </head>
+<body class="study-crash-style">
 
-<body>
+
+<audio id="soundtrack" class="audios" src="media/classical_8bit_01.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="apple" class="audios" src="media/apple.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="eat" class="audios" src="media/eat.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="success" class="audios" src="media/success.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="lose" class="audios" src="media/lose.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="gamer" class="audios" src="media/gamer.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="whine" class="audios" src="media/whine.mp3" preload="auto" style="display:none">No audio!</audio>
+<audio id="youwin" class="audios" src="media/you-win.mp3" preload="auto" style="display:none">No audio!</audio>
 
 
-<div id="developer" class="developer" style="display: none;">
- <big><b>Uplanianos</b></big> permite a los estudiantes optimizar sus actividades académicas desde confeccionar el horario de clases, revisar información importante como
- el calendario académico, reglamento del estudiante y escalas de notas.<br>
- <br>
- Las distintas herramientas permiten además calcular el promedio de asignaturas integrales y con porcentajes, calcular del porcentaje de pruebas, porcentaje de asistencia,
- revisar fechas importantes, simular el examen acumulativo especial, entre otras.<br>
- <br>
- La innovación fue conceptualizada y desarrollada originalmente el año 2023, actualizando permanentemente desde esa fecha tanto en el presente formato <i>Web</i>, como
- en su versión <i>Android</i> por su servidor, <b>prof. Juan Edo. Méndez</b>.<br>
- <br>
- <b>Contacto:</b><br>
- juan.mendez@upla.cl<br>
+<div class="start">
+Aprovechando tu tiempo de estudio!<br>
+<br>
+
+<div class="demoCircle">DEMO!</div>
+
+<div class="orange-banner" style="padding: 12px; margin-bottom: -60px;"><a href="https://www.instagram.com/uplanianos/" target="_blank">Uplanianos presents...</a></div><br>
+<div class="raspberry-banner" style="padding-top: 56px;">STUDY OR CRASH!</div>
+<br>
+<font style="font-size: 1.2em;">
+Juego en 2D estilo <i>'indie'</i> que simula el día a día de las actividades universitarias!<br>
+<br>
+Solo debes moverme de derecha a izquierda (⬅️➡️), pero las dificultades, las distracciones y los requisitos aumentan cada semestre.
+<br>
+</font>
+<br>
+<div style="position: absolute; left: -50px; bottom: -50px;"><img src="sprites/student-character.png" height="275em"></div>
+<div class="actionButtons" onclick="location.replace('demo-02.html')" style="margin: auto;">INICIAR</div>
 </div>
-
-
-<div id="mainDiv" class="main" style="display: block;">
-    <br>
-    <div class="title">
-	<div class="letters" style="color: red;">U</div>
-	<div class="letters" style="color: green;">P</div>
-	<div class="letters" style="color: blue;">L</div>
-	<div class="letters" style="color: purple;">A</div>
-	<div class="letters" style="color: yellow;">N</div>
-	<div class="letters" style="color: turquoise;" onclick="doThis()">I</div>
-	<div class="letters" style="color: lightgreen;">A</div>
-	<div class="letters" style="color: orange;">N</div>
-	<div class="letters" style="color: lightblue;">O</div>
-	<div class="letters" style="color: pink;">S</div>
-    </div>
-    <div class="labels"><p>Información:</p></div>
-    <div class="info-div" id="infoDiv" style="overflow-x: scroll; scroll-behavior: smooth;">
-     <button onclick="sideScrollInfo()" onMouseOver="sideScrollInfo()" class="slideInfoLeft" id="slideInfoLeft">&#8249;</button>
-     <a href="horario.html"><div class="pretty-blue-bubble"><p>HORARIO<br>DE CLASES</p></div></a>
-     <a href="temporizador.html"><div class="candy-red-bubble" style="width: 150px;"><p>TEMPORIZADOR<br>DE CLASES</p></div></a>
-     <a href="agenda.html"><div class="grass-green-bubble" style="width: 150px;"><p>AGENDA<br>SEMESTRAL</p></div></a>
-     <a href="calendario.html"><div class="pale-blue-bubble"><p>CALENDARIO<br>ACADÉMICO</p></div></a>
-     <a href="avance.html"><div class="purple-iris-bubble"><p>AVANCE<br>CURRICULAR</p></div></a>
-     <a href="manual-estudiante.html"><div class="pink-plum-bubble"><p>MANUAL DEL<br>ESTUDIANTE</p></div></a>
-     <a href="notas.html"><div class="pumpkin-bubble"><p>ESCALAS<br>DE NOTAS</p></div></a>
-     <a href="sigueparo.html"><div class="candy-red-bubble" style="width: 140px;"><p>PARO<br>TRACKER</p></div></a>
-     <button onclick="sideScrollInfo()" onMouseOver="sideScrollInfo()" class="slideInfoRight" id="slideInfoRight">&#8250;</button>
-    </div>
-
-    <div class="labels"><p>Herramientas:</p></div>
-    <div class="tools-div" id="toolsDiv" style="overflow-x: scroll; scroll-behavior: smooth;">
-     <button onclick="sideScrollTools()" onMouseOver="sideScrollTools()" class="slideToolsLeft" id="slideToolsLeft">&#8249;</button>
-     <a href="integrales.html?x=2&g1=0.0&g2=0.0"><div class="pumpkin-bubble"><p>PROMEDIOS<br>INTEGRALES</p></div></a>
-     <a href="promedios.html"><div class="pale-blue-bubble"><p>PROMEDIO EN<br>PORCENTAJES</p></div></a>
-     <a href="pruebas.html?total=100&puntos=0"><div class="purple-iris-bubble"><p>CÁLCULO<br>DE PRUEBAS</p></div></a>
-     <a href="countdown.html"><div class="candy-red-bubble" style="width: 142px;"><p>CUENTA<br>REGRESIVA</p></div></a>
-     <a href="asistencia.html?tipo=2&clases=12&asiste=0"><div class="small-grass-bubble"><p>SIMULADOR<br>DE ASISTENCIA</p></div></a>
-     <a href="examen.html?promedio=3.5&examen=4.0"><div class="pumpkin-bubble"><p>SIMULADOR<br>DE EXAMEN</p></div></a>
-     <a href="justify.html"><div class="pale-blue-bubble"><p>JUSTIFICAR<br>INASISTENCIA</p></div></a>
-     <a href="junaeb.html"><div class="pink-plum-bubble"><p>DESCARGA<br>JUNAEB</p></div></a>
-     <a href="timebox.html"><div class="pumpkin-bubble"><p>PLANIFICADOR<br>DE ESTUDIO</p></div></a>
-     <a href="estudio.html"><div class="small-grass-bubble"><p>PREGUNTAS<br>DE ESTUDIO</p></div></a>
-     <a href="voting.html"><div class="pale-blue-bubble"><p>VOTACIÓN<br>UPLANIANA</p></div></a>
-     <a href="english.html"><div class="purple-iris-bubble"><p>TALLER<br>INGLÉS SELLO</p></div></a>
-     <a href="install.html"><div class="candy-red-bubble" style="width: 142px;"><p>INSTALACIÓN<br>ANDROID</p></div></a>
-     <a href="upladisticas.html"><div class="pale-neon-yellow-bubble"><p style="color: #666; font-color: #616D7E;">UPLANIANOS<br>STATS</p></div></a>
-    <button onclick="sideScrollTools()" onMouseOver="sideScrollTools()" class="slideToolsRight" id="slideToolsRight">&#8250;</button>
-    </div>
-    <br>
-
-<!--
-    <iframe src="ticker.html" title="Uplanianos - Inform-inator" style="display: flex; width: 95%; height: 60px; text-align: center; border: 0; margin-left: auto; margin-right: auto; 
-padding: 0px;">
-    </iframe>
--->
-
-<div class="ticker">
-
- <div id="div1" style="display: block;">Web App no oficial para Uplanianos! ✔️<br>
- <small>🔎 <a class="ticker-link" href="license.html" target="_parent">Términos de Uso</small></a> 👈
- </div> 
-
- <div id="div2" class="ticker-link" style="display: none;">¿Cuánto queda para las pruebas? ⏳<br>
- <small>🔎 <a class="ticker-link" href="countdown.html" target="_parent">Ver recuento!</small></a>  👈
- </div>
-
- <div id="div3" class="ticker-link" style="display: none;"><span id="dateSpan">Hoy día es...</span><br>
- <small>🔎 <a class="ticker-link" href="agenda.html" target="_parent">Ver Agenda!</small></a> 👈
- </div>
-
- <div id="div4" class="ticker-link" style="display: none;"><span id="dateSpan">¿Tienes teléfono Android? 👽</span><br>
- <small>🔎 <a class="ticker-link" href="install.html" target="_parent">Ver Instalación!</small></a> 👈
- </div>
-
- <div id="div5" class="ticker-link" style="display: none;"><span id="dateSpan">¿No sabes cómo estudiar? 😰</span><br>
- <small>🔎 <a class="ticker-link" href="timebox.html" target="_parent">Comienza aquí!</small></a> 👈
- </div>
-
- <div id="div6" class="ticker-link" style="display: none;">Hay carreras <font color="red">en paro!✋</font><br>
- <small>🔎 <a class="ticker-link" href="sigueparo.html" target="_parent">Ver detalles!</a></small> 👈
- </div>
-
-</div>
-
-
-    <br>
-    <br>
-    </div>
-
-<! -- COMMENTED OUT! -->
-<! -- <div class="counter"> -->
-<! --  <a href='http://www.freevisitorcounters.com'>www.freevisitorcounters.com</a> -->
-<! --  <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=38a6d5789117af0afbba085a736f0fe5465d0da8'></script> -->
-<! --  <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1032905/t/5"></script> -->
-<! -- </div> -->
-
-</div>
-
-
- <div style="width: max-content; text-align: center; background-color: red; margin-top: 12px; margin-left: auto; margin-right: auto; padding: 3px; display: none; visibility: hidden;">
-  <input number id="localVisitCounter" value="0" style="width: 25px; text-align: center;">
- </div>
-
-
-<script type="text/javascript">
-function sideScrollInfo() {
-const slideInfoRight = document.getElementById('slideInfoRight');
-const slideInfoLeft = document.getElementById('slideInfoLeft');
-const infoArea = document.getElementById('infoDiv');
-    slideInfoRight.onclick = function() { infoArea.scrollLeft += 500};
-    slideInfoLeft.onclick = function() { infoArea.scrollLeft -= 500};
-}
-</script>
-
-
-<script type="text/javascript">
-function sideScrollTools() {
-const slideToolsRight = document.getElementById('slideToolsRight');
-const slideToolsLeft = document.getElementById('slideToolsLeft');
-const toolsArea = document.getElementById('toolsDiv');
-    slideToolsRight.onclick = function() { toolsArea.scrollLeft += 632};
-    slideToolsLeft.onclick = function() { toolsArea.scrollLeft -= 632};
-}
-</script>
-
-
-
-<script type="text/javascript">
-function demoTheButtons() {
-
-// DECLARING ELEMENTS
-counter = document.getElementById('localVisitCounter')
-slideInfoRight = document.getElementById('slideInfoRight')
-slideInfoLeft = document.getElementById('slideInfoLeft')
-slideToolsRight = document.getElementById('slideToolsRight')
-slideToolsLeft = document.getElementById('slideToolsLeft')
-
-// COUNT LOCAL VISITS
-counter.value++; // console.log(counter.value)
-
-// CHECKING LOCAL VISIT COUNTER & MOBILE ENVIRONMENT
- if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-  slideInfoRight.style.visibility = "hidden"; slideInfoRight.style.display = "none"
-  slideInfoLeft.style.visibility = "hidden"; slideInfoLeft.style.display = "none"
-  slideToolsRight.style.visibility = "hidden"; slideToolsRight.style.display = "none"
-  slideToolsLeft.style.visibility = "hidden"; slideToolsLeft.style.display = "none"
- }
- else if (counter.value <= 5) {
-  setTimeout('demoSlide1()', 1000 * 0.4)
-  setTimeout('demoSlide2()', 1000 * 1)
-  setTimeout('demoSlide3()', 1000 * 2.5)
- }
-}
-
-function demoSlide1() {
-document.getElementById('slideToolsRight').focus(); 
-document.getElementById('toolsDiv').scrollLeft += 632;}
-
-function demoSlide2() {
-document.getElementById('slideToolsLeft').focus();
-document.getElementById('toolsDiv').scrollLeft -= 632;}
-
-function demoSlide3() {
-document.getElementById('slideToolsLeft').blur();}
-</script>
-
-
-
-
-<script type="text/javascript">
-function slideTicker() {
-
-// DECLARING ELEMENTS
-div1 = document.getElementById('div1')
-div2 = document.getElementById('div2')
-div3 = document.getElementById('div3')
-div4 = document.getElementById('div4')
-div5 = document.getElementById('div5')
-div6 = document.getElementById('div6')
-var randomCount = 0
-
-// Generate a random number between 1 and 6
-var doTheLoop = setInterval(function(){
- const randomNumber = Math.floor(Math.random() * 6) + 1 // <--- CHANGE TO 5 TO DELETE THE STRIKE!
-  if (randomNumber == 1) { div1.style.display = "block"; randomCount++ } else {div1.style.display = "none" }
-  if (randomNumber == 2) { div2.style.display = "block"; randomCount++ } else {div2.style.display = "none" }
-  if (randomNumber == 3) { div3.style.display = "block"; randomCount++ } else {div3.style.display = "none" }
-  if (randomNumber == 4) { div4.style.display = "block"; randomCount++ } else {div4.style.display = "none" }
-  if (randomNumber == 5) { div5.style.display = "block"; randomCount++ } else {div5.style.display = "none" }
-  if (randomNumber == 6) { div6.style.display = "block"; randomCount++ } else {div6.style.display = "none" }
-
-  // STOP THE TICKER AFTER 10 RANDOMIZAIZATIONS (WHEN TICKER N°1 REPEATS)!
-  if (randomNumber == 1 && randomCount >= 10) { clearInterval(doTheLoop);
-
-  }; // console.log("Cycle complete!") // CHECKS WHEN CYCLE FINISHES!
-
- // console.log(randomCount, "Ticker N°"+randomNumber) // CHECKS RANDOM NUMBER & REPETITION!
- },1000 * 4 ); // EVERY "X" SECONDS
-}
-
-
-// GET DATE FOR TOMORROW!
-function getDate() {
-var dateSpan = document.getElementById('dateSpan')
-
- const date = new Date();
- const daysOfWeek = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
- const currentDayOfWeek = daysOfWeek[date.getDay() + 1];
- dateSpan.innerText = "Mañana es " + currentDayOfWeek + " 📅❗"
-}
-</script>
-
-
-
-<!- SAVE FUNCTION ->
-<!- CONNECTED TO JQUERY WITH THE FOLLOWING SCRIPT ->
-<script src="scripts/jquery-3.7.1.slim.js"></script>
-<!- https://stackoverflow.com/questions/39155511/html-save-text-in-textarea ->
-<!- https://jquery.com/download/ ->
-
-<script type="text/javascript">
-window.onbeforeunload = function() {
-     $('input').each(function(){
-        var id = $(this).attr('id');
-        var value = $(this).val();
-       localStorage.setItem(id, value);
-    });
-}
-
-window.onload = function() {
-    $('input').each(function(){
-       var id = $(this).attr('id');
-       var text2 = localStorage.getItem(id);
-       if (text2 !== null) $('#'+id).val(text2);
-    });
-
-// CALLS TO ANOTHER FUNCTION!!
-demoTheButtons()
-slideTicker()
-getDate()
-}
-</script>
-
-
-<script type="text/javascript">
-var clicks = 0
-let mainDiv = document.getElementById("mainDiv")
-let developer = document.getElementById("developer")
-
-function doThis() {
- clicks++
- console.log("Developer clicks: "+clicks)
- if (clicks >= 10) {
-  mainDiv.style.display = "none"
-  developer.style.display = "block"
-  setTimeout('resetMain()', 1000 * 30)
-  clicks = 0;
- } // End of IF statement!
-}
-
-function resetMain() {
- mainDiv.style.display = "block"
- developer.style.display = "none"
-}
-</script>
 
 </body>
 </html>
