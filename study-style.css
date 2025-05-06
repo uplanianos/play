@@ -101,8 +101,8 @@ canvas { display: block; margin: auto; }
  z-index: 10;
 }
 
-#leftBtn { left: 25px; bottom: 75px;  box-shadow: none; outline: none; }
-#rightBtn { right: 25px; bottom: 75px;  box-shadow: none; outline: none; }
+#leftBtn { left: 25px; bottom: 120px;  box-shadow: none; outline: none; }
+#rightBtn { right: 25px; bottom: 120px;  box-shadow: none; outline: none; }
 
 /* GAME STYLE SETTINGS */
 

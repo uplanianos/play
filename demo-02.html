@@ -162,12 +162,11 @@ function create() {
 
   cursors = this.input.keyboard.createCursorKeys();
   this.time.addEvent({
-    delay: 1000, // DROP RATE FOR THE ITEMS (DEFAULT: 1000)!
+    delay: 1200, // DROP RATE FOR THE ITEMS (DEFAULT: 1000)!
     callback: dropItem,
     callbackScope: this,
     loop: true
   });
-
 
   // Pause Button
    let isPaused = false;
@@ -234,7 +233,7 @@ function dropItem() {
 
   const item = items.create(x, 10, type);
   item.setData('type', type);
-  item.setVelocityY(220); // FALLING ITEMS VELOCITY! (DEFAULT: 200)
+  item.setVelocityY(185); // FALLING ITEMS VELOCITY! (DEFAULT: 200)
 
   // Scale item to 5% of screen width
   const scaleFactor = (config.width * 0.09) / item.width; // 0.09 = 9%
@@ -244,14 +243,14 @@ function dropItem() {
 function collectItem(player, item) {
   const type = item.getData('type');
 
-  if (type === 'books') score += 60, successPlay();
-  else if (type === 'study') score += 60, successPlay();
+  if (type === 'books') score += 50, successPlay();
+  else if (type === 'study') score += 50, successPlay();
   else if (type === 'apple') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 10), score += 10, applePlay();
   else if (type === 'eggs') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 20), score += 20, applePlay();
   else if (type === 'avocado') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 20), score += 20, applePlay();
   else if (type === 'chicken') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 20), eatPlay();
   else if (type === 'chocolate') moveSpeed = Math.min(MAX_SPEED, moveSpeed + 10), eatPlay();
-  else if (type === 'beer') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 60), score -= 60, losePlay(), speedLabel.style.color = 'navy';
+  else if (type === 'beer') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 60), score -= 60, losePlay();
   else if (type === 'phone') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 30), score -= 30, whinePlay();
   else if (type === 'games') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 30), score -= 30, gamerPlay();
   else if (type === 'weed') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 100), score -= 150, losePlay();
@@ -271,6 +270,7 @@ function checkGameOver() {
     document.getElementById("leftBtn").style.display = "none"; // Hiding UI elements!
     document.getElementById("rightBtn").style.display = "none"; // Hiding UI elements!
     document.getElementById("pauseBtn").style.display = "none"; // Hiding UI elements!
+    document.getElementById("spacebar").style.display = "none"; // Hiding UI elements!
     document.getElementById("soundtrackBtn").style.display = "none"; // Hiding UI elements!
     setTimeout(function() { location.replace("https://uplanianos.github.io/app/") }, 1000 * 30) // Timed redirect (30 seconds)!
   }
