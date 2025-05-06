@@ -128,7 +128,7 @@ div.start {
 div.orange-banner {
  position: relative;
  width: max-content;
- background-color: orange;
+ background-color: #FFA500 /*orange*/;
  font-size: 1.6em;
  border: 3px solid yellow;
  border-radius: 12px;
@@ -166,7 +166,19 @@ div.youWin {
 
 
 /* START BUTTON */
-div.studyStart { width: 50%; background-color: #008000AA /* Green */; font-size: 1.4em; text-align: center; margin: auto; margin-top: 12px; padding: 18px; border: 3px solid white; border-radius: 12px; cursor: pointer; }
+div.actionButtonsDiv { display: flex; margin: auto; width: max-content; }
 
-div.studyStart:hover { color: yellow; background-color: #FF000066 /* Red: #FF0000 - Dark Red: #8B0000 */; outline: none; }
+div.actionButtons { width: 225px; background-color: #00800088 /*Green*/; font-size: 1em; text-align: center; margin: auto; margin-top: 4px; margin-left: 3px; padding: 6px 0px 6px 0px /* top right bottom left */; border: 2px solid white; border-radius: 24px; cursor: pointer; }
+div.actionButtons:hover { background-color: #FF000088; /* Orange: #FFA500AA - Orange Red: #FF4500 */ }
 
+div.soundtrackLink {
+ position: absolute;
+ bottom: 12px;
+ left: 12px;
+ font-size: 2.2vmin;
+ background-color: #FFFF0066;
+ border: 1px solid #0000FF66;
+ border-radius: 6px;
+ padding: 6px 12px;
+ display: none;
+}
