@@ -104,7 +104,7 @@ canvas { display: block; margin: auto; }
 #leftBtn { left: 25px; bottom: 120px;  box-shadow: none; outline: none; }
 #rightBtn { right: 25px; bottom: 120px;  box-shadow: none; outline: none; }
 
-/* GAME STYLE SETTINGS */
+/* END OF GAME STYLE SETTINGS */
 
 
 body::-webkit-scrollbar { display: none; }
@@ -193,7 +193,7 @@ div.youWin {
 /* START BUTTON */
 div.actionButtonsDiv { display: flex; margin: auto; width: max-content; }
 
-div.actionButtons { width: 225px; background-color: #00800088 /*Green*/; font-size: 1em; text-align: center; margin: auto; margin-top: 4px; margin-left: 3px; padding: 6px 0px 6px 0px /* top right bottom left */; border: 2px solid white; border-radius: 24px; cursor: pointer; }
+div.actionButtons { width: 225px; background-color: #00800088 /*Green*/; font-size: 1em; text-align: center; margin: auto; margin-top: 4px; margin-left: 3px; padding: 18px 0px 18px 0px /* top right bottom left */; border: 2px solid white; border-radius: 24px; cursor: pointer; }
 div.actionButtons:hover { background-color: #FF000088; /* Orange: #FFA500AA - Orange Red: #FF4500 */ }
 
 div.soundtrackLink {
@@ -206,4 +206,10 @@ div.soundtrackLink {
  border-radius: 6px;
  padding: 6px 12px;
  display: none;
+}
+
+
+/* Use a media query to add a break point at 800px: */
+@media screen and (max-width: 800px) {
+ /* Place elements here for adaptive size on small screens! */
 }
