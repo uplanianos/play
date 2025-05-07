@@ -90,9 +90,8 @@ let powerBarBg, powerBarFill, speedLabel;
 
 function preload() {
 
-  this.load.spritesheet('student', 'https://uplanianos.github.io/play/sprites/walker.png', {
-    frameWidth: 160, frameHeight: 213
-  });
+  this.load.spritesheet('student', 'https://uplanianos.github.io/play/sprites/walker.png', { frameWidth: 160, frameHeight: 213 });
+  this.load.spritesheet('idler', 'https://uplanianos.github.io/play/sprites/idler.png', { frameWidth: 160, frameHeight: 213 });
 
   this.load.image('background','https://uplanianos.github.io/play/sprites/background.jpg');
   this.load.image('ground', 'https://uplanianos.github.io/play/sprites/ground.png');
@@ -133,7 +132,7 @@ function create() {
 
   // NEW ANIMATIONS
   this.anims.create({ key: 'turn', frames: [ { key: 'student', frame: 0 } ], frameRate: 20 });
-  this.anims.create({ key: 'left', frames: this.anims.generateFrameNumbers('student', { start: 1, end: 6 }), frameRate: 8, repeat: -1 });
+  this.anims.create({ key: 'left', frames: this.anims.generateFrameNumbers('student', { frames: [1,2,3,4,5,6] }), frameRate: 8, repeat: -1 });
   this.anims.create({ key: 'right', frames: this.anims.generateFrameNumbers('student', { start: 1, end: 6 }), frameRate: 8, repeat: -1 });
 
   // Enable keyboard input
