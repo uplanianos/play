@@ -141,7 +141,7 @@ function create() {
   this.physics.add.collider(player, ground);
   // this.physics.add.collider(items, ground);
 
-  scoreText = this.add.text(12, 0, 'Estudio: 0', { fontSize: '6em', fontFamily: 'Verdana', fill: 'navy' });
+  scoreText = this.add.text(12, 0, 'Estudio: 1000/0', { fontSize: '6em', fontFamily: 'Verdana', fill: 'navy' });
 
   // Power bar + label
   powerBarBg = this.add.rectangle(20, 80, 200, 50, 0x888888).setOrigin(0, 0);
@@ -248,7 +248,7 @@ function collectItem(player, item) {
   else if (type === 'games') moveSpeed = Math.max(MIN_SPEED, moveSpeed - 40), score -= 40, gamerPlay();
 
   item.destroy();
-  scoreText.setText('Estudio: ' + score);
+  scoreText.setText('Estudio: 1000/' + score);
   checkGameOver();
 
 }
