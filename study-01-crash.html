@@ -32,8 +32,8 @@ establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 <div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/horario.html')" style="border-radius: 0px 24px 0px 0px;">HORARIO</div>
 </div>
 <div class="actionButtonsDiv">
-<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/estudio.html')" style="border-radius: 0px;">REPASAR</div>
 <div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/timebox.html')" style="border-radius: 0px;">PLANEAR</div>
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/estudio.html')" style="border-radius: 0px;">REPASAR</div>
 </div>
 <div class="actionButtonsDiv">
 <div class="actionButtons" onclick="location.replace('study-02.html')" style="width: 456px; border-radius: 0px 0px 24px 24px;">CONTINUAR ►</div>
@@ -55,8 +55,8 @@ establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 <div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/horario.html')" style="border-radius: 0px 24px 0px 0px;">HORARIO</div>
 </div>
 <div class="actionButtonsDiv">
-<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/estudio.html')" style="border-radius: 0px;">REPASAR</div>
 <div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/timebox.html')" style="border-radius: 0px;">PLANEAR</div>
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/estudio.html')" style="border-radius: 0px;">REPASAR</div>
 </div>
 <div class="actionButtonsDiv">
 <div class="actionButtons" onclick="location.replace('index.html')" style="width: 456px; border-radius: 0px 0px 24px 24px;">REINICIAR ►</div>
@@ -234,11 +234,14 @@ function update() {
     player.setVelocityX(0);
     player.anims.play('turn');
   }
+
   // UPDATE PROGRESS BAR COLOR!
   // console.log(moveSpeed)
-  if (moveSpeed < 250) { powerBarFill.destroy();
+  if (moveSpeed < 200) { powerBarFill.destroy();
     powerBarFill = this.add.rectangle(200, 80, 200, 50, 0xff0000, 0.8).setOrigin(0, 0).setDepth(0); }
-  else if (moveSpeed >= 250) { powerBarFill.destroy();
+  if (moveSpeed >= 200 && moveSpeed < 400) { powerBarFill.destroy();
+    powerBarFill = this.add.rectangle(200, 80, 200, 50, 0xffff00, 0.8).setOrigin(0, 0).setDepth(0); }
+  else if (moveSpeed >= 400) { powerBarFill.destroy();
     powerBarFill = this.add.rectangle(200, 80, 200, 50, 0x00ff00, 0.8).setOrigin(0, 0).setDepth(0); }
 
   // UPDATE POWER BAR WIDTH
