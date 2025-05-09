@@ -1,6 +1,7 @@
 
 /* SCHOOL FONT SETTINGS */
 @font-face { font-family: 'SketchRockwell'; /*name to be used below*/ src: url('fonts/SketchRockwell.ttf'); /*URL to font*/ }
+@font-face { font-family: 'Pricedown'; /*name to be used below*/ src: url('fonts/Pricedown.otf'); /*URL to font*/ }
 
 body {
  font-family: 'Roboto', Verdana, Helvetica, Sans-serif;
@@ -191,6 +192,21 @@ div.youWin {
  transform:translateY(-50%);
  width: 85%;
  background-color: #151B54CC;
+ text-align: center; color: white;
+ margin: auto;
+ border: 6px solid white;
+ border-radius: 32px;
+ padding: 24px; 
+}
+
+div.youLose {
+ z-index: 1;
+ position: absolute;
+ left: 1%; right: 1%;
+ top:50%;
+ transform:translateY(-50%);
+ width: 85%;
+ background-color: #000000CC;
  text-align: center; color: white;
  margin: auto;
  border: 6px solid white;

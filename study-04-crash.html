@@ -43,6 +43,28 @@ establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 </div>
 
 
+<div id="youLose" class="youLose" style="display: none;">
+<div class="raspberry-banner" style="margin-top: -85px; font-family: 'Pricedown';">SEMESTRE REPROBADO!</div>
+<br>
+<font style="font-size: 1.8em;">Para tener un semestre exitoso, debes formar buenos hábitos...
+establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
+<br>
+<div class="actionButtonsDiv">
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/agenda.html')" style="border-radius: 24px 0px 0px 0px;">AGENDA</div>
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/horario.html')" style="border-radius: 0px 24px 0px 0px;">HORARIO</div>
+</div>
+<div class="actionButtonsDiv">
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/estudio.html')" style="border-radius: 0px;">REPASAR</div>
+<div class="actionButtons" onclick="location.replace('https://uplanianos.github.io/app/timebox.html')" style="border-radius: 0px;">PLANEAR</div>
+</div>
+<div class="actionButtonsDiv">
+<div class="actionButtons" onclick="location.replace('index.html')" style="width: 456px; border-radius: 0px 0px 24px 24px;">REINICIAR ►</div>
+</div>
+</font></p>
+<div style="position: absolute; left: 6px; bottom: -6px;"><img src="sprites/student-character-loser.png" height="232em"></div>
+</div>
+
+
 <div id="soundtrackLink" class="soundtrackLink">
 <b>► Sountrack:</b> <a href="https://www.youtube.com/watch?v=8rOQ5mQ7xyo" target="_blank"> Classical Music but...</a>
 </div>
@@ -278,7 +300,7 @@ function checkGameOver() {
   if (moveSpeed <= 50) {
     game.destroy(true, false) // Kills the game
     gameoverPlay();
-    document.getElementById("youWin").style.display = "block"; // Showing end message!
+    document.getElementById("youLose").style.display = "block"; // Showing end message!
     document.getElementById("soundtrackLink").style.display = "block"; // Showing end message!
     document.getElementById("leftBtn").style.display = "none"; // Hiding UI elements!
     document.getElementById("rightBtn").style.display = "none"; // Hiding UI elements!
