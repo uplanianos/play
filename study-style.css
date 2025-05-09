@@ -124,7 +124,8 @@ div.start {
  width: 85%;
  background-color: #151B54CC;
  text-align: center;
- font-size: 1.5em;
+ word-wrap: break-word;
+ font-size: min(1.6em, 3vmin);
  color: white;
  border: 6px solid white;
  border-radius: 36px;	
@@ -141,8 +142,8 @@ div.orange-banner {
  border: 3px solid yellow;
  border-radius: 12px;
  margin: auto;
- padding-left: 36px;
- padding-right: 36px;
+ padding-left: 16px;
+ padding-right: 16px;
 }
 
 div.raspberry-banner {
@@ -150,16 +151,24 @@ div.raspberry-banner {
  color: yellow;
  font-size: 2.8em;
  font-weight: bold;
- font-family: 'SketchRockwell';
+ font-family: 'SketchRockwell', tahoma;
+ font-weight: bold;
  text-shadow: 1px 1px 6px navy;
  border: 3px solid yellow;
  border-radius: 24px;
  padding: 24px;
 }
 
+div.character {
+ position: absolute;
+ left: 30px;
+ top: -75px;
+}
+
 div.demoCircle {
  position: absolute;
- top: 50px; left: 60px;
+ right: 6%;
+ top: 50px;
  width: 125px;
  display: grid;
  place-content: center;
