@@ -126,7 +126,7 @@ div.start {
  background-color: #151B54CC;
  text-align: center;
  word-wrap: break-word;
- font-size: min(1.6em, 3vmin);
+ font-size: min(1.8em, 2.6vmin);
  color: white;
  border: 6px solid white;
  border-radius: 36px;	
@@ -225,7 +225,7 @@ div.soundtrackLink {
  position: absolute;
  bottom: 12px;
  left: 12px;
- font-size: 2.2vmin;
+ font-size: 2.4vmin;
  background-color: #FFFF0066;
  border: 1px solid #0000FF66;
  border-radius: 6px;
