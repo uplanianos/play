@@ -45,7 +45,7 @@ establece una alarma de 30 a 60 minutos y <b>repasa tus materias</b>!<br>
 
 
 <div id="youLose" class="youLose" style="display: none;">
-<div class="raspberry-banner" style="margin-top: -85px; font-family: 'Pricedown';">SEMESTRE REPROBADO!</div>
+<div class="raspberry-banner" style="margin-top: -85px; font-family: 'Pricedown', 'SketchRockwell';">SEMESTRE REPROBADO!</div>
 <br>
 <font style="font-size: 1.8em;">Para tener un semestre exitoso, debes formar buenos hábitos...
 trata de mejorar y <b>estudiar diariamente</b>!<br>
@@ -131,6 +131,11 @@ function preload() {
 
 
 function create() {
+
+  // START GAME IN PAUSE MODE!!!
+  // this.scene.pause();
+
+  // CREATE STUFF!!!
   const bg = this.add.image(0, 0, 'background').setOrigin(0, 0);
   bg.setDisplaySize(config.width, config.height); // Stretch to full screen
   bg.setDepth(-1); // Send background behind everything

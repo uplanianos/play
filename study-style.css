@@ -152,7 +152,7 @@ div.raspberry-banner {
  color: yellow;
  font-size: 2.8em;
  font-weight: bold;
- font-family: 'SketchRockwell', tahoma;
+ font-family: 'SketchRockwell', Tahoma;
  font-weight: bold;
  text-shadow: 1px 1px 6px navy;
  border: 3px solid yellow;
@@ -202,7 +202,8 @@ div.youWin {
 div.youLose {
  z-index: 1;
  position: absolute;
- left: 1%; right: 1%;
+ left: 1%;
+ right: 1%;
  top:50%;
  transform:translateY(-50%);
  width: 85%;
